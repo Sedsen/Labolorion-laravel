@@ -11,24 +11,38 @@
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="">
-        <a class="navbar-brand" href="#">Lorion Education</a>
+        <a class="navbar-brand" href="{{ url('/') }}">Lorion Education</a>
         <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId" aria-controls="collapsibleNavId"
-            aria-expanded="false" aria-label="Toggle navigation"></button>
+            aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
         <div class="collapse navbar-collapse" id="collapsibleNavId">
             <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-                <li class="nav-item active">
-                <a class="nav-link" href="{{ url('admin') }}">Administration </a>
-                </li>
+                @if (isset($users))
+                    
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{{ url('admin') }}">Administration </a>
+                    </li>
+                @endif
+                
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a>
+                <a class="nav-link" href="{{ url('/') }}">Accueil</a>
                 </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
-                    <div class="dropdown-menu" aria-labelledby="dropdownId">
-                        <a class="dropdown-item" href="#">Action 1</a>
-                        <a class="dropdown-item" href="#">Action 2</a>
-                    </div>
-                </li>
+                @if (isset($doms))
+                    @foreach ($doms as $domaine)
+                        <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="dropdownId{{$domaine->id}}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ $domaine->nom_domaine }}</a>
+                            <div class="dropdown-menu bg-dark" aria-labelledby="dropdownId{{$domaine->id}}">
+                                @foreach ($sous_doms->where('domaine_id',$domaine->id) as $sous_domaine)
+                                    <a class="dropdown-item text-info" href="#">{{ $sous_domaine->nomSousDomaine }}</a>
+                                @endforeach
+                            
+                            </div>
+                        </li>
+                    @endforeach
+                @endif
+                
+                
             </ul>
             <form class="form-inline my-2 my-lg-0">
                 <input class="form-control mr-sm-2" type="text" placeholder="Search">
@@ -68,11 +82,7 @@
         </ul>
     </nav>
 
-    <div class="sidebar">
-        <nav>
-            <a href="#">Accueil</a>
-        </nav>
-    </div>
+    
     
     <div class="contenu">
         @yield('content')

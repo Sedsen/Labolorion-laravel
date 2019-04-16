@@ -12,9 +12,10 @@
 */
 
 Route::get('/', 'LorionController@index');
+Route::get('/show/{id}','LorionController@show_produit');
 
-Route::group(['prefix' => 'admin'], function () {
-    Route::get('/','Admin\AdminController@index');
+Route::group(['prefix' => 'admin','middleware' => 'auth'], function () {
+    Route::get('/','Admin\AdminController@index')->middleware('admin');
     Route::get('domaine','Admin\AdminController@show_domaine')->name('domaine');
     Route::post('domaine','Admin\AdminController@add_domaine');
     Route::get('delete_domaine/{id}','Admin\AdminController@delete_domaine');

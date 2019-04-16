@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Input;
 use App\Domaine;
 use App\Sousdomaine;
 use App\Produit;
+use App\User;
 use App\Http\Requests\SousDomaineRequest;
 
 class AdminController extends Controller
@@ -18,13 +19,20 @@ class AdminController extends Controller
         $nombre_domaine = Domaine::count();
         $nombre_sous_domaine = Sousdomaine::count();
         $nombre_produit = Produit::count();
-        return view('admin/dashboard',compact('nombre_domaine','nombre_sous_domaine','nombre_produit'));
+        $doms = Domaine::get();
+        $sous_doms = SousDomaine::get();
+        $users = User::where('is_admin',1)->get() ;
+       // dd($users);
+        return view('admin/dashboard',compact('nombre_domaine','nombre_sous_domaine','nombre_produit','doms','sous_doms','users'));
     }
 
     public function show_domaine()
     {
         $data = Domaine::all();
-        return view('admin/domaine',compact('data'));
+        $doms = Domaine::get();
+        $sous_doms = SousDomaine::get();
+        $users = User::where('is_admin',1)->get() ;
+        return view('admin/domaine',compact('data','doms','sous_doms','users'));
     }
     public function add_domaine(DomaineRequest $request)
     {
@@ -54,8 +62,10 @@ class AdminController extends Controller
         
         $domaines = new Domaine();
         $sous = new Sousdomaine();
-        
-        return view('admin/sous_domaine',compact('domaines','sous'));
+        $doms = Domaine::get();
+        $sous_doms = SousDomaine::get();
+        $users = User::where('is_admin',1)->get() ;
+        return view('admin/sous_domaine',compact('domaines','sous','doms','sous_doms','users'));
     }
 
     public function add_sous_domaine(SousDomaineRequest $request)

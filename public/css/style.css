@@ -5,15 +5,16 @@ body{
 .sidebar {
     width: 15%;
     position: absolute;
-    top: 60px;
+    top: 0px;
     bottom: 0%;
-    background-color:#28a745;
-    display: none;
+    background-color:black;
+    display:block;
     
 }
 .sidebar a{
     color: white;
-    padding-left: 20px;
+    position:  absolute;
+    top: 10%;
 }
 .contenu{
     width: 75%;

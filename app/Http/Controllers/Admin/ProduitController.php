@@ -8,6 +8,8 @@ use App\Sousdomaine;
 use App\Produit;
 use App\Http\Requests\ProduitsRequest;
 use App\Http\Requests\ModifProduitRequest;
+use App\Domaine;
+use App\User;
 
 class ProduitController extends Controller
 {
@@ -16,7 +18,10 @@ class ProduitController extends Controller
         $sous = new Sousdomaine();
         $sous_domaines = Sousdomaine::orderBy('nomSousDomaine','ASC')->get();
         $produits = Produit::get(); 
-        return view('admin/produit',compact('sous_domaines','produits','sous'));
+        $doms = Domaine::get();
+        $sous_doms = SousDomaine::get();
+        $users = User::where('is_admin',1)->get() ;
+        return view('admin/produit',compact('sous_domaines','produits','sous','doms','sous_doms','users'));
     }
 
     public function add_produit(ProduitsRequest $request)
@@ -57,7 +62,10 @@ class ProduitController extends Controller
     {
         $produit = Produit::findOrFail($id);
         $sous_domaines = Sousdomaine::where('id',$id)->get();
+        $doms = Domaine::get();
+        $sous_doms = SousDomaine::get();
+        $users = User::where('is_admin',1)->get() ;
        // dd($sous_domaines);
-        return view('admin/produit-edit', compact('produit','sous_domaines'));
+        return view('admin/produit-edit', compact('produit','sous_domaines','doms','sous_doms','users'));
     }
 }
