@@ -10,7 +10,7 @@
             <img src="/uploads/{{ $produit->image }}" alt="{{ $produit->id }}" class="img-fluid img-thumbnail" width="500px">
         </div>
         <div class="col col-lg-4 ">
-            <a href="#"> {{ $sous_doms->where('id',$produit->sous_domaine_id)->first()->nomSousDomaine }} </a>
+            <a href=" {{ url("show_liste/$produit->sous_domaine_id") }} "> {{ $sous_doms->where('id',$produit->sous_domaine_id)->first()->nomSousDomaine }} </a>
             <p class="alert alert-danger text-center" style="">
                <u>Prix de vente:</u>  {{ $produit->prix_vente }} Fr
             </p>

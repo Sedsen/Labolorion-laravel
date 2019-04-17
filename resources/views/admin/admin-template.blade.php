@@ -23,6 +23,9 @@
                     <li class="nav-item active">
                         <a class="nav-link" href="{{ url('admin') }}">Administration </a>
                     </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{{ url('admin/show_users') }}">Utilisateurs </a>
+                    </li>
                 @endif
                 
                 <li class="nav-item">
@@ -34,7 +37,7 @@
                         <a class="nav-link dropdown-toggle" href="#" id="dropdownId{{$domaine->id}}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ $domaine->nom_domaine }}</a>
                             <div class="dropdown-menu bg-dark" aria-labelledby="dropdownId{{$domaine->id}}">
                                 @foreach ($sous_doms->where('domaine_id',$domaine->id) as $sous_domaine)
-                                    <a class="dropdown-item text-info" href="#">{{ $sous_domaine->nomSousDomaine }}</a>
+                                    <a class="dropdown-item text-info" href=" {{ url("show_liste/$sous_domaine->id") }} ">{{ $sous_domaine->nomSousDomaine }}</a>
                                 @endforeach
                             
                             </div>
@@ -53,11 +56,11 @@
             <!-- Authentication Links -->
             @guest
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                    <a class="nav-link" href="{{ route('login') }}">{{ __('Connexion') }}</a>
                 </li>
                 @if (Route::has('register'))
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                        <a class="nav-link" href="{{ route('register') }}">{{ __("S'enrégistrer") }}</a>
                     </li>
                 @endif
             @else
@@ -87,6 +90,14 @@
     <div class="contenu">
         @yield('content')
     </div>
+    <!--<footer>
+        <div class="bg-dark text-light text-center" style="width:100%;position:absolute;height:7%;">
+            <ul class="list-unstyled">
+                <a href=" {{url('/')}} ">Accueil</a>
+                <a href="{{ route('login') }} ">Connexion</a>
+            </ul>
+        </div>
+    </footer>-->
     {{ Html::script(url('js/jquery.js')) }}
     {{ Html::script(url('bootstrap/js/bootstrap.min.js')) }}
 </body>

@@ -13,6 +13,7 @@
 
 Route::get('/', 'LorionController@index');
 Route::get('/show/{id}','LorionController@show_produit');
+Route::get('/show_liste/{sous_domaine_id}','LorionController@show_liste_sous_domaine');
 
 Route::group(['prefix' => 'admin','middleware' => 'auth'], function () {
     Route::get('/','Admin\AdminController@index')->middleware('admin');
@@ -24,6 +25,10 @@ Route::group(['prefix' => 'admin','middleware' => 'auth'], function () {
     Route::get('sous_domaine','Admin\AdminController@show_sous_domaine')->name('sous_domaine');
     Route::post('sous_domaine','Admin\AdminController@add_sous_domaine');
     Route::get('delete_/{id}','Admin\AdminController@delete_sous_domaine');
+
+    Route::get('show_users','Admin\AdminController@show_users');
+    Route::post('show_users','Admin\AdminController@add_users');
+    Route::get('delete_user/{id}','Admin\AdminController@delete_user');
 });
 
 Route::group(['prefix' => 'admin'], function () {

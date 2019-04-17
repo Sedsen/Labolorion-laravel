@@ -11,6 +11,7 @@ use App\Sousdomaine;
 use App\Produit;
 use App\User;
 use App\Http\Requests\SousDomaineRequest;
+use App\Http\Requests\UserRequest;
 
 class AdminController extends Controller
 {
@@ -85,6 +86,43 @@ class AdminController extends Controller
         $sous = Sousdomaine::findOrFail($id);
         $sous->delete();
         return redirect()->route('sous_domaine');
+    }
+
+    public function show_users()
+    {
+        $doms = Domaine::get();
+        $sous_doms = SousDomaine::get();
+        $users = User::where('is_admin',1)->get() ;
+        $list_users = User::get();
+        return view('admin/users', compact('doms','sous_doms','users','list_users'));
+    }
+
+    public function add_users(UserRequest $request)
+    {
+        
+        $admin = $request->get('is_admin');
+       // dd($admin);
+       $user = new User(
+           [   'name' => $request->get('name'),
+                'email' => $request->get('email'),
+                'password' => bcrypt($request->get('password')),
+            ]
+       );
+       $user->save();
+        if (isset($admin))
+        {
+            $user->is_admin = 1;
+            $user->save();
+        } 
+        
+        return redirect('admin/show_users');
+    }
+
+    public function delete_user($id)
+    {
+        $user = User::findOrFail($id);
+        $user->delete();
+        return redirect('admin/show_users');
     }
 
 }
