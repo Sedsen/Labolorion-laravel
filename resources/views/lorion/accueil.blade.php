@@ -9,7 +9,7 @@
             <div class="card-deck">
                 @foreach ($produits as $produit)
                 <div class="col col-lg-3">
-                    <div class="card bg-secondary" style="width: 15rem; height:25rem;">
+                    <div class="card bg-secondary" style="width: 15rem; height:23rem;">
                         <img class="card-img-top" src="/uploads/{{$produit->image}}" alt="" style="height:15rem;">
                         <div class="card-body">
                             <span class="card-title text-light">{{ $produit->nom }}</span>
@@ -25,6 +25,7 @@
                 
                 
             </div>
+           
         </div>
     </div>
 @endsection

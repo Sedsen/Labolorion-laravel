@@ -13,7 +13,7 @@
                     @if ($errors->has('name'))
                        <div class="alert alert-danger">
                             {{ $errors->first('name') }}
-                        </div> 
+                        </div>
                     @endif
                     <div class="form-group">
                       <label for="Email">Email</label>
@@ -22,7 +22,7 @@
                     @if ($errors->has('email'))
                        <div class="alert alert-danger">
                             {{ $errors->first('email') }}
-                        </div> 
+                        </div>
                     @endif
                     <div class="form-group">
                       <label for="password">Mot de Passe</label>
@@ -31,7 +31,7 @@
                     @if ($errors->has('password'))
                        <div class="alert alert-danger">
                             {{ $errors->first('password') }}
-                        </div> 
+                        </div>
                     @endif
                     <div class="form-group">
                       <label for="passwordConfirmation">Confirmation du mot de passe</label>
@@ -65,7 +65,7 @@
                             <td scope="row"> {{$user->id}} </td>
                             <td> {{$user->name}} </td>
                             <td> {{$user->email}} </td>
-                            
+
                             @if ($user->is_admin == 1)
                                  <td> Administrateur </td>
                             @else
@@ -77,16 +77,16 @@
                                     Supprimer
                                 </button>
                             </td>
-                              
+
                         </tr>
-                        
-                        
+
+
                         <!-- Modal -->
                         <div class="modal fade" id="suppr{{ $user->id }}" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title">Suppression de l'utilisateur</h5>
+                                        <h5 class="modal-title">Suppression de l utilisateur</h5>
                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                 <span aria-hidden="true">&times;</span>
                                             </button>
@@ -102,7 +102,7 @@
                             </div>
                         </div>
 
-                    @endforeach 
+                    @endforeach
                 </tbody>
             </table>
         </div>

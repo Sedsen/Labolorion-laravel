@@ -18,15 +18,23 @@
         </button>
         <div class="collapse navbar-collapse" id="collapsibleNavId">
             <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+
                 @if (isset($users))
                     
-                    <li class="nav-item active">
-                        <a class="nav-link" href="{{ url('admin') }}">Administration </a>
-                    </li>
-                    <li class="nav-item active">
-                        <a class="nav-link" href="{{ url('admin/show_users') }}">Utilisateurs </a>
-                    </li>
-                @endif
+               
+                    @foreach ($users as $user)
+                        @if (session()->get('login_web_59ba36addc2b2f9401580f014c7f58ea4e30989d') == $user->id)
+                        
+                            <li class="nav-item active">
+                                <a class="nav-link" href="{{ url('admin') }}">Administration </a>
+                            </li>
+                            <li class="nav-item active">
+                                <a class="nav-link" href="{{ url('admin/show_users') }}">Utilisateurs </a>
+                            </li>
+                        @endif
+                    @endforeach
+
+                 @endif
                 
                 <li class="nav-item">
                 <a class="nav-link" href="{{ url('/') }}">Accueil</a>
@@ -90,14 +98,14 @@
     <div class="contenu">
         @yield('content')
     </div>
-    <!--<footer>
-        <div class="bg-dark text-light text-center" style="width:100%;position:absolute;height:7%;">
+    <footer>
+        <div class="bg-dark text-light text-center" id="footer" style="width:100%;position:absolute;height:7%;">
             <ul class="list-unstyled">
                 <a href=" {{url('/')}} ">Accueil</a>
                 <a href="{{ route('login') }} ">Connexion</a>
             </ul>
         </div>
-    </footer>-->
+    </footer>
     {{ Html::script(url('js/jquery.js')) }}
     {{ Html::script(url('bootstrap/js/bootstrap.min.js')) }}
 </body>
