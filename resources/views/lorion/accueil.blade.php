@@ -1,4 +1,4 @@
-@extends('admin/admin-template')
+@extends('lorion/template')
 
 @section('content')
     <div class="container">
@@ -14,18 +14,20 @@
                         <div class="card-body">
                             <span class="card-title text-light">{{ $produit->nom }}</span>
                             <p class="card-text" style="position:absolute;bottom:2%;">
-                            <a href="{{ url("/show/$produit->id") }}" class="btn btn-info">Details</a>
+                            <a href="{{ url("/show/$produit->id") }}" class="btn btn-info btn-lg">Details</a>
                                 <span class="alert alert-danger"> {{ $produit->prix_vente }} Fr </span>
                             </p>
                         </div>
-                    </div>
+                    </div> <br>
                 </div>
-                    
+
                 @endforeach
-                
-                
+
+
             </div>
-           
+        </div>
+        <div class="row d-flex justify-content-center text-center">
+            {{ $produits->render() }}
         </div>
     </div>
 @endsection

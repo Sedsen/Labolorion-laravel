@@ -1,4 +1,4 @@
-@extends('admin/admin-template')
+@extends('lorion/template')
 
 @section('content')
 <div class="row">
@@ -26,18 +26,21 @@
             </div>
             <div class="form-group">
               <label for="Sous domaine">Sous domaine</label>
-              <select class="form-control" name="sous_domaine_id" id="" >
-                @foreach ($sous_domaines as $sous_domaine)
+            <!--  <select class="form-control" name="sous_domaine_id" id="" >
+                @foreach ($sous_doms as $sous_domaine)
                     <option>
                         {{ $sous_domaine->nomSousDomaine }}
                     </option>
                 @endforeach
-                
-                
-              </select>
+
+
+              </select>-->
+
+              {!! Form::select("sous_domaine_id", $list, $produit->sous_domaine_id, ['class' => "form-control"]) !!}
+
             </div>
-    
-            
+
+
            <!-- <div class="form-group">
               {{ Form::label('Image du Produit') }}
               {{ Form::file('image',['values' => $produit->image]) }}
@@ -60,7 +63,7 @@
                         </div>
                  @endif
             </div>
-    
+
         {{ Form::close() }}
         <script >
             CKEDITOR.replace('description',{allowedContent: true});

@@ -17,7 +17,7 @@ class ProduitController extends Controller
     {
         $sous = new Sousdomaine();
         $sous_domaines = Sousdomaine::orderBy('nomSousDomaine','ASC')->get();
-        $produits = Produit::get(); 
+        $produits = Produit::get();
         $doms = Domaine::get();
         $sous_doms = SousDomaine::get();
         $users = User::where('is_admin',1)->get() ;
@@ -65,7 +65,14 @@ class ProduitController extends Controller
         $doms = Domaine::get();
         $sous_doms = SousDomaine::get();
         $users = User::where('is_admin',1)->get() ;
-       // dd($sous_domaines);
-        return view('admin/produit-edit', compact('produit','sous_domaines','doms','sous_doms','users'));
+       // $list = Sousdomaine::all('nomSousDomaine')->toArray();
+       $list = [];
+        foreach($sous_doms as $sous) {
+           // $list['id'] = $sous->id;
+            $list[$sous->id] = $sous->nomSousDomaine;
+        }
+
+       // dd($list);
+        return view('admin/produit-edit', compact('produit','sous_domaines','doms','sous_doms','users','list'));
     }
 }

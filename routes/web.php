@@ -14,6 +14,7 @@
 Route::get('/', 'LorionController@index');
 Route::get('/show/{id}','LorionController@show_produit');
 Route::get('/show_liste/{sous_domaine_id}','LorionController@show_liste_sous_domaine');
+Route::get('/search','LorionController@search');
 
 Route::group(['prefix' => 'admin','middleware' => 'auth'], function () {
     Route::get('/','Admin\AdminController@index')->middleware('admin');
@@ -37,6 +38,15 @@ Route::group(['prefix' => 'admin'], function () {
     Route::get('/delete_produit/{id}','Admin\ProduitController@delete');
     Route::post('/update_produit/{id}','Admin\ProduitController@update');
     Route::get('/edit/{id}','Admin\ProduitController@edit');
+});
+
+Route::group(['prefix' => 'chat','middleware' => 'auth'], function () {
+   /* Route::get('/{chat_id}','ChatController@index');
+*/
+    Route::get('view/{user_id}','ChatController@view_message');
+    Route::post('view/{user_id}','ChatController@add_admin_message');
+    Route::get('/','ChatController@index');
+    Route::post('/','ChatController@add_user_message');
 });
 
 Auth::routes();

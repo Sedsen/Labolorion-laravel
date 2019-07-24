@@ -1,4 +1,4 @@
-@extends('admin/admin-template')
+@extends('lorion/template')
 
 @section('content')
 <div class="container">

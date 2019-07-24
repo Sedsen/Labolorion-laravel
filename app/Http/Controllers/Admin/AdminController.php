@@ -12,6 +12,8 @@ use App\Produit;
 use App\User;
 use App\Http\Requests\SousDomaineRequest;
 use App\Http\Requests\UserRequest;
+use Illuminate\Support\Facades\Auth;
+use App\Discussion;
 
 class AdminController extends Controller
 {
@@ -22,9 +24,10 @@ class AdminController extends Controller
         $nombre_produit = Produit::count();
         $doms = Domaine::get();
         $sous_doms = SousDomaine::get();
-        $users = User::where('is_admin',1)->get() ;
-       // dd($users);
-        return view('admin/dashboard',compact('nombre_domaine','nombre_sous_domaine','nombre_produit','doms','sous_doms','users'));
+        $msg_not_reads = new Discussion();
+       // $users = User::where('is_admin',1)->get() ;
+        //dd(Auth::user()->is_admin);
+        return view('admin/dashboard',compact('nombre_domaine','nombre_sous_domaine','nombre_produit','doms','sous_doms','msg_not_reads'));
     }
 
     public function show_domaine()
@@ -32,8 +35,8 @@ class AdminController extends Controller
         $data = Domaine::all();
         $doms = Domaine::get();
         $sous_doms = SousDomaine::get();
-        $users = User::where('is_admin',1)->get() ;
-        return view('admin/domaine',compact('data','doms','sous_doms','users'));
+        //$users = User::where('is_admin',1)->get() ;
+        return view('admin/domaine',compact('data','doms','sous_doms'));
     }
     public function add_domaine(DomaineRequest $request)
     {
@@ -60,7 +63,7 @@ class AdminController extends Controller
 
     public function show_sous_domaine()
     {
-        
+
         $domaines = new Domaine();
         $sous = new Sousdomaine();
         $doms = Domaine::get();
@@ -72,7 +75,7 @@ class AdminController extends Controller
     public function add_sous_domaine(SousDomaineRequest $request)
     {
         $inputs = Input::all();
-        
+
         $domaine = Domaine::where('nom_domaine', $request->get('domaine_id'))->first();
         $inputs = array_merge($request->all(),['domaine_id' => $domaine->id]);
 
@@ -99,7 +102,7 @@ class AdminController extends Controller
 
     public function add_users(UserRequest $request)
     {
-        
+
         $admin = $request->get('is_admin');
        // dd($admin);
        $user = new User(
@@ -113,8 +116,8 @@ class AdminController extends Controller
         {
             $user->is_admin = 1;
             $user->save();
-        } 
-        
+        }
+
         return redirect('admin/show_users');
     }
 

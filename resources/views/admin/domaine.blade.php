@@ -1,4 +1,4 @@
-@extends('admin/admin-template')
+@extends('lorion/template')
 
 @section('content')
     <div class="row">
@@ -12,9 +12,9 @@
                     @if ($errors->has('nom_domaine'))
                        <div class="alert alert-danger">
                             {{ $errors->first('nom_domaine') }}
-                        </div> 
+                        </div>
                     @endif
-                  
+
                 </div>
                 <div class="form-group">
                     <button class="btn btn-primary" type="submit">Ajouter un domaine </button>
@@ -52,8 +52,8 @@
                                     </button>
                                 </td>
                             </tr>
-                            
-                            
+
+
                             <!-- Modal -->
                             <div class="modal fade" id="suppr{{$row->id}}" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
                                 <div class="modal-dialog" role="document">
@@ -75,8 +75,8 @@
                                 </div>
                             </div>
 
-                            
-                            
+
+
                             <!-- Modal -->
                         <div class="modal fade" id="modif{{$row->id}}" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
                                 <div class="modal-dialog" role="document">
@@ -94,7 +94,7 @@
                                                   <label for="" class="sr-only">Domaine</label>
                                                   <input type="text"
                                                 class="form-control" name="nom_domaine" id="" aria-describedby="helpId" placeholder="Domaine" value="{{$row->nom_domaine}}">
-                                                    
+
                                                 </div>
                                                 <div class="form-group">
                                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -102,15 +102,15 @@
                                                 </div>
                                             {{ Form::close() }}
                                         </div>
-                                        
+
                                     </div>
                                 </div>
                             </div>
                         @endforeach
-                            
+
                     </tbody>
                 </table>
             </div>
-        </div>  
+        </div>
     </div>
 @endsection

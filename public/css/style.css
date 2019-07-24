@@ -1,40 +1,23 @@
-body{
-    background-color:lightgray;
+.main-menu {
+	list-style: none;
+	float: right;
+	padding-top: 25px;
 }
 
-.sidebar {
-    width: 15%;
-    position: absolute;
-    top: 0px;
-    bottom: 0%;
-    background-color:black;
-    display:block;
-    
-}
-.sidebar a{
-    color: white;
-    position:  absolute;
-    top: 10%;
-}
-.contenu{
-    width: 75%;
-    position: absolute;
-    left: 15%;
-    top: 8%;
-    bottom: 0%;
+.main-menu li {
+	display: inline;
 }
 
-.domaine {
-    width: 15%;
-    height: 13em;
-    margin-top: 5%;
-    margin-left: 50px;
-    position: relative;
-    top: 15%;
-  /*  height:20%; */
+.main-menu li a {
+	display: inline-block;
+	font-size: 16px;
+	color: #fff;
+	margin-left: 50px;
+	-webkit-transition: all 0.4s;
+	-o-transition: all 0.4s;
+	transition: all 0.4s;
 }
 
-#footer {
-    position: absolute;
-    bottom: 0%;
+.main-menu li a:hover {
+	color: #eb2b63;
 }

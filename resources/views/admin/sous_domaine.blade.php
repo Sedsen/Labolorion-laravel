@@ -1,4 +1,4 @@
-@extends('admin/admin-template')
+@extends('lorion/template')
 
 @section('content')
     <div class="row">
@@ -12,9 +12,9 @@
                         @if ($errors->has('nomSousDomaine'))
                             <div class="alert alert-danger">
                                 {{ $errors->first('nomSousDomaine') }}
-                            </div> 
+                            </div>
                         @endif
-                
+
                 </div>
                 <div class="form-group">
                   <label for="domaine" class="sr-only">Domaine</label>
@@ -22,9 +22,9 @@
                     @foreach ($domaines->get() as $domaine)
                         <option>
                             {{ $domaine->nom_domaine }}
-                        </option>     
-                    @endforeach   
-                         
+                        </option>
+                    @endforeach
+
                   </select>
                 </div>
                 <div class="form-group">
@@ -48,13 +48,13 @@
                             </tr>
                         </thead>
                         <tbody>
-                                                       
-                                  
+
+
                                 @foreach ($sous->get() as $row)
-                                
+
                                     <tr>
                                         <td scope="row">{{$row->id}}</td>
-                                        
+
                                         <td> {{ $domaines->where('id',$row->domaine_id)->get('nom_domaine')->first()->nom_domaine }} </td>
                                         <td>{{ $row->nomSousDomaine }} </td>
                                         <td>
@@ -70,10 +70,10 @@
                                             </button>
                                         </td>
                                     </tr>
-                               
-                                
-                                
-                                
+
+
+
+
                                 <!-- Modal -->
                                 <div class="modal fade" id="suppr{{$row->id}}" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
                                     <div class="modal-dialog" role="document">
@@ -94,9 +94,9 @@
                                         </div>
                                     </div>
                                 </div>
-    
-                                
-                                
+
+
+
                                 <!-- Modal -->
                             <!--<div class="modal fade" id="modif{{$row->id}}" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
                                     <div class="modal-dialog" role="document">
@@ -114,7 +114,7 @@
                                                       <label for="" class="sr-only">Domaine</label>
                                                       <input type="text"
                                                     class="form-control" name="nom_domaine" id="" aria-describedby="helpId" placeholder="Domaine" value="{{$row->nom_domaine}}">
-                                                        
+
                                                     </div>
                                                     <div class="form-group">
                                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -122,15 +122,15 @@
                                                     </div>
                                                 {{ Form::close() }}
                                             </div>
-                                            
+
                                         </div>
                                     </div>
                                 </div>-->
                             @endforeach
-                            
+
                         </tbody>
                     </table>
                 </div>
-            </div>  
+            </div>
         </div>
 @endsection

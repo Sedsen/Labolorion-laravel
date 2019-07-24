@@ -1,7 +1,7 @@
-@extends('admin/admin-template')
+@extends('lorion/template')
 
 @section('content')
-    
+
     <div class="row">
         <div class="col-lg-4 offset-lg-2">
             {{ Form::open(['url' => '/admin/produit','files' => true ]) }}
@@ -33,11 +33,11 @@
                             {{ $sous_domaine->nomSousDomaine }}
                         </option>
                     @endforeach
-                    
-                    
+
+
                   </select>
                 </div>
-                
+
                 <div class="form-group">
                   {{ Form::label('Image du Produit') }}
                   {{ Form::file('image',null) }}
@@ -48,7 +48,7 @@
                       </div>
                   @endif
 
-                
+
 
                 <button type="submit" class="btn btn-primary">Ajouter</button>
         </div>
@@ -63,14 +63,14 @@
                     </div>
                 @endif
         </div>
-
-            {{ Form::close() }}
             <script >
                 CKEDITOR.replace('description',{allowedContent: true});
             </script>
+            {{ Form::close() }}
+
     </div>
-        
-    
+
+
     <div class="row">
         <div class="container">
             <div class="table-responsive" >
@@ -93,7 +93,7 @@
                                     <td>{{ $produit->prix_vente }}</td>
                                     <td>{{ $sous->where('id',$produit->sous_domaine_id)->get('nomSousDomaine')->first()->nomSousDomaine   }}</td>
                                     <td>
-                                        
+
                                     <a href="{{ url("admin/edit/$produit->id") }}" class="btn btn-secondary">
                                             Modifier
                                         </a>
@@ -105,8 +105,8 @@
                                     </button>
                                     </td>
                                 </tr>
-                                
-                                
+
+
                                 <!-- Modal -->
                                 <div class="modal fade" id="suppr{{$produit->id}}" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
                                     <div class="modal-dialog" role="document">
@@ -129,11 +129,11 @@
                                 </div>
 
                             @endforeach
-                            
-                            
+
+
                         </tbody>
                 </table>
-            </div>    
+            </div>
         </div>
     </div>
 

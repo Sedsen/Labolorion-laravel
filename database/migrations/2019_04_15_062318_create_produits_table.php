@@ -19,7 +19,7 @@ class CreateProduitsTable extends Migration
             $table->string('nom')->unique();
             $table->integer('prix_vente');
             $table->text('description');
-            $table->string('image');
+            $table->string('image')->nullable();
             $table->timestamps();
         });
         Schema::table('produits', function (Blueprint $table) {
