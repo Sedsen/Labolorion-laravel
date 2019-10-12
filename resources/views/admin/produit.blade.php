@@ -64,7 +64,7 @@
                 @endif
         </div>
             <script >
-                CKEDITOR.replace('description',{allowedContent: true});
+                CKEDITOR.replace('description');//,{allowedContent: true}
             </script>
             {{ Form::close() }}
 
@@ -95,13 +95,13 @@
                                     <td>
 
                                     <a href="{{ url("admin/edit/$produit->id") }}" class="btn btn-secondary">
-                                            Modifier
+                                            <i class="fas fa-fw fa-edit"></i> Modifier
                                         </a>
                                     </td>
                                     <td>
                                     <!-- Button trigger modal -->
                                     <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#suppr{{$produit->id}}">
-                                    Supprimer
+                                        <i class="fas fa-fw  fa-trash-alt"></i> Supprimer
                                     </button>
                                     </td>
                                 </tr>
@@ -135,6 +135,9 @@
                 </table>
             </div>
         </div>
+    </div>
+    <div class="row d-flex justify-content-center text-center">
+        {{ $produits->render() }}
     </div>
 
 @endsection

@@ -9,12 +9,12 @@
      <div class="card text-white bg-primary o-hidden h-100">
        <div class="card-body">
          <div class="card-body-icon">
-           <i class="fas fa-fw fa-comments"></i>
+           <i class="fas fa-fw fa-layer-group"></i>
          </div>
          <div class="mr-5">{{ $nombre_domaine }} Domaines</div>
        </div>
        <a class="card-footer text-white clearfix small z-1" href="{{ url('admin/domaine') }}">
-         <span class="float-left">View Details</span>
+         <span class="float-left">Voir Details</span>
          <span class="float-right">
            <i class="fas fa-angle-right"></i>
          </span>
@@ -30,7 +30,7 @@
          <div class="mr-5">{{ $nombre_sous_domaine }} Sous-domaines</div>
        </div>
        <a class="card-footer text-white clearfix small z-1" href="{{ url('admin/sous_domaine') }}">
-         <span class="float-left">View Details</span>
+         <span class="float-left">Voir Details</span>
          <span class="float-right">
            <i class="fas fa-angle-right"></i>
          </span>
@@ -46,7 +46,7 @@
          <div class="mr-5">{{ $nombre_produit }} Produits</div>
        </div>
        <a class="card-footer text-white clearfix small z-1" href="{{ url('admin/produit') }}">
-         <span class="float-left">View Details</span>
+         <span class="float-left">Voir Details</span>
          <span class="float-right">
            <i class="fas fa-angle-right"></i>
          </span>
@@ -57,12 +57,12 @@
      <div class="card text-white bg-danger o-hidden h-100">
        <div class="card-body">
          <div class="card-body-icon">
-           <i class="fas fa-fw fa-life-ring"></i>
+           <i class="fas fa-fw fa-comments"></i>
          </div>
          <div class="mr-5">Discussion</div>
        </div>
-       <a class="card-footer text-white clearfix small z-1" href="#">
-         <span class="float-left">View Details</span>
+       <a class="card-footer text-white clearfix small z-1" href="{{ url('chat') }}">
+         <span class="float-left">Voir Details</span>
          <span class="float-right">
            <i class="fas fa-angle-right"></i>
          </span>

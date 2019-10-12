@@ -1,0 +1,14 @@
+{
+    "sqltools.connections": [
+        {
+            "askForPassword": true,
+            "connectionTimeout": 30,
+            "database": "lorionEducation",
+            "dialect": "MySQL",
+            "name": "lorionEducation",
+            "port": 3306,
+            "server": "127.0.0.1",
+            "username": "root"
+        }
+    ]
+}

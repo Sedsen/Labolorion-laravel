@@ -25,9 +25,10 @@ class AdminController extends Controller
         $doms = Domaine::get();
         $sous_doms = SousDomaine::get();
         $msg_not_reads = new Discussion();
-       // $users = User::where('is_admin',1)->get() ;
+        $titre = "Adminstration";
+        // $users = User::where('is_admin',1)->get() ;
         //dd(Auth::user()->is_admin);
-        return view('admin/dashboard',compact('nombre_domaine','nombre_sous_domaine','nombre_produit','doms','sous_doms','msg_not_reads'));
+        return view('admin/dashboard', compact('nombre_domaine', 'nombre_sous_domaine', 'titre', 'nombre_produit', 'doms', 'sous_doms', 'msg_not_reads'));
     }
 
     public function show_domaine()
@@ -35,15 +36,16 @@ class AdminController extends Controller
         $data = Domaine::all();
         $doms = Domaine::get();
         $sous_doms = SousDomaine::get();
+        $titre = "Adminstration - Domaines";
         //$users = User::where('is_admin',1)->get() ;
-        return view('admin/domaine',compact('data','doms','sous_doms'));
+        return view('admin/domaine', compact('data', 'titre', 'doms', 'sous_doms'));
     }
     public function add_domaine(DomaineRequest $request)
     {
         $inputs = Input::all();
         Domaine::create($inputs);
-       //dd($data);
-         return redirect()->route('domaine');
+        //dd($data);
+        return redirect()->route('domaine');
     }
     public function delete_domaine($id)
     {
@@ -52,10 +54,10 @@ class AdminController extends Controller
         return redirect()->route('domaine');
     }
 
-    public function update_domaine($id,DomaineRequest $request)
+    public function update_domaine($id, DomaineRequest $request)
     {
         $domaine = Domaine::findOrFail($id);
-       // dd(Input::get(['nom_domaine']));
+        // dd(Input::get(['nom_domaine']));
         $domaine->nom_domaine = Input::get('nom_domaine');
         $domaine->save();
         return redirect()->route('domaine');
@@ -68,8 +70,9 @@ class AdminController extends Controller
         $sous = new Sousdomaine();
         $doms = Domaine::get();
         $sous_doms = SousDomaine::get();
-        $users = User::where('is_admin',1)->get() ;
-        return view('admin/sous_domaine',compact('domaines','sous','doms','sous_doms','users'));
+        $titre = "Administration - Sous domaines";
+        $users = User::where('is_admin', 1)->get();
+        return view('admin/sous_domaine', compact('domaines', 'sous', 'titre', 'doms', 'sous_doms', 'users'));
     }
 
     public function add_sous_domaine(SousDomaineRequest $request)
@@ -77,7 +80,7 @@ class AdminController extends Controller
         $inputs = Input::all();
 
         $domaine = Domaine::where('nom_domaine', $request->get('domaine_id'))->first();
-        $inputs = array_merge($request->all(),['domaine_id' => $domaine->id]);
+        $inputs = array_merge($request->all(), ['domaine_id' => $domaine->id]);
 
         Sousdomaine::create($inputs);
         //dd($inputs);
@@ -91,29 +94,39 @@ class AdminController extends Controller
         return redirect()->route('sous_domaine');
     }
 
+    public function update_sous_domaine($id, SousDomaineRequest $request)
+    {
+        $sous_domaine = Sousdomaine::findOrFail($id);
+        //dd($sous_domaine);
+        $sous_domaine->nomSousDomaine = $request->get('nomSousDomaine');
+        $sous_domaine->save();
+        return redirect()->route('sous_domaine');
+    }
+
     public function show_users()
     {
         $doms = Domaine::get();
         $sous_doms = SousDomaine::get();
-        $users = User::where('is_admin',1)->get() ;
+        $users = User::where('is_admin', 1)->get();
         $list_users = User::get();
-        return view('admin/users', compact('doms','sous_doms','users','list_users'));
+        $titre = "Liste des utilisateurs et leur rôle";
+        return view('admin/users', compact('doms', 'sous_doms', 'titre', 'users', 'list_users'));
     }
 
     public function add_users(UserRequest $request)
     {
 
         $admin = $request->get('is_admin');
-       // dd($admin);
-       $user = new User(
-           [   'name' => $request->get('name'),
+        // dd($admin);
+        $user = new User(
+            [
+                'name' => $request->get('name'),
                 'email' => $request->get('email'),
                 'password' => bcrypt($request->get('password')),
             ]
-       );
-       $user->save();
-        if (isset($admin))
-        {
+        );
+        $user->save();
+        if (isset($admin)) {
             $user->is_admin = 1;
             $user->save();
         }
@@ -127,5 +140,4 @@ class AdminController extends Controller
         $user->delete();
         return redirect('admin/show_users');
     }
-
 }

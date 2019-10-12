@@ -1,13 +1,15 @@
-#btn-chat{
+#btn-chat {
     /*background-color: #0b3290;*/
     /*color: #FFF;*/
     padding-left: 1%;
 }
+
 .chat-bottom-bar {
     padding: 10px 15px !important;
     background-color: #387ef5 !important;
 }
-.panel-footer-gray{
+
+.panel-footer-gray {
     text-align: right;
     font-weight: bold;
     font-size: 85%;
@@ -18,7 +20,8 @@
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
 }
-.panel-footer-blue{
+
+.panel-footer-blue {
     text-align: right;
     font-weight: bold;
     font-size: 85%;
@@ -29,7 +32,8 @@
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
 }
-.box-blue{
+
+.box-blue {
     background-color: #387ef5;
     color: #FFF;
     position: relative;
@@ -39,7 +43,9 @@
     border-radius: 5px;
     text-align: left;
 }
-.box-blue:after, .box-blue:before {
+
+.box-blue:after,
+.box-blue:before {
     left: 100%;
     top: 50%;
     border: solid transparent;
@@ -65,7 +71,9 @@
     border-radius: 5px;
     text-align: right;
 }
-.box-gray:after, .box-gray:before {
+
+.box-gray:after,
+.box-gray:before {
     right: 100%;
     top: 50%;
     border: solid transparent;
@@ -81,29 +89,29 @@
     margin-top: -10px;
 }
 
-.input-50{
+.input-50 {
     width: 50%
 }
 
-.msg-container{
- /* height: 70%;
+.msg-container {
+    /* height: 70%;
   max-height:400px;
   overflow-y:scroll;*/
-  background-color: white;
+    background-color: white;
 }
 
-.msg-container > div{
+.msg-container>div {
     padding-bottom: 2%;
 }
 
-.pointer{
+.pointer {
     cursor: pointer;
 }
 
 /*
     File Input
 */
-.file_input{
+.file_input {
     width: 0.1px;
     height: 0.1px;
     opacity: 0;
@@ -112,11 +120,10 @@
     z-index: -1;
 }
 
-.file_input + span {
+.file_input+span {
     font-size: 1.25em;
     font-weight: 700;
     color: white;
     background-color: black;
     display: inline-block;
 }
-

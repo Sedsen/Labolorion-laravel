@@ -18,7 +18,10 @@
                 <td> {{ $list->email }} </td>
 
                 <td> <a href=" {{ url("chat/view/$list->id") }} " class="btn btn-info">Discussion <button class="btn">
-                     <span class="badge badge-danger">{{ $not_read->where('user_id',$list->id)->where('is_read',0)->where('chat_id',$chat->select_admin_chat($list->id)->first()->id)->count() }}</span>
+                     <span class="badge badge-danger">
+                        {{ $not_read->where('user_id',$list->id)->where('chat_id',$chatController->select_admin_chat($list->id)->make()->first()->id)->count() }}
+
+                     </span>
                 </button></a>
 
                 </td>

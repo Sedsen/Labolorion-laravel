@@ -98,7 +98,7 @@
 
 
                                 <!-- Modal -->
-                            <!--<div class="modal fade" id="modif{{$row->id}}" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+                            <div class="modal fade" id="modif{{$row->id}}" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
                                     <div class="modal-dialog" role="document">
                                         <div class="modal-content">
                                             <div class="modal-header">
@@ -108,12 +108,13 @@
                                                     </button>
                                             </div>
                                             <div class="modal-body">
-                                                {{ Form::open(['url' => "admin/update/$row->id"]) }}
+                                                {{ Form::open(['url' => "admin/update_sous_domaine/$row->id"]) }}
                                                     <div class="form-group">
-                                                        <legend> Modification de domaine </legend>
+                                                        <legend> Modification de sous domaine </legend>
                                                       <label for="" class="sr-only">Domaine</label>
                                                       <input type="text"
-                                                    class="form-control" name="nom_domaine" id="" aria-describedby="helpId" placeholder="Domaine" value="{{$row->nom_domaine}}">
+                                                    class="form-control" name="nomSousDomaine" id="" aria-describedby="helpId" placeholder="Sous domaine"
+                                                    value="{{$row->nomSousDomaine}}">
 
                                                     </div>
                                                     <div class="form-group">
@@ -125,7 +126,7 @@
 
                                         </div>
                                     </div>
-                                </div>-->
+                                </div>
                             @endforeach
 
                         </tbody>

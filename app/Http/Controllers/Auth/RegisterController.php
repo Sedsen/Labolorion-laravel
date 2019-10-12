@@ -7,6 +7,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use App\Domaine;
+use App\Sousdomaine;
 
 class RegisterController extends Controller
 {
@@ -40,6 +42,14 @@ class RegisterController extends Controller
         $this->middleware('guest');
     }
 
+    public function showRegistrationForm()
+    {
+        $doms = Domaine::get();
+        $sous_doms = SousDomaine::get();
+        $titre = "S'enrégistrer";
+        return view('auth.register', compact('doms', 'sous_doms', 'titre'));
+    }
+
     /**
      * Get a validator for an incoming registration request.
      *
@@ -51,7 +61,7 @@ class RegisterController extends Controller
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'password' => ['required', 'string', 'min:5', 'confirmed'],
         ]);
     }
 

@@ -17,8 +17,8 @@ class CreateProduitsTable extends Migration
             $table->increments('id');
             $table->integer('sous_domaine_id')->unsigned()->index();
             $table->string('nom')->unique();
-            $table->integer('prix_vente');
-            $table->text('description');
+            $table->integer('prix_vente')->nullable();
+            $table->text('description')->nullable();
             $table->string('image')->nullable();
             $table->timestamps();
         });

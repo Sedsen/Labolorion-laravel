@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Domaine;
 use App\Http\Controllers\Controller;
+use App\Sousdomaine;
 use Illuminate\Foundation\Auth\VerifiesEmails;
+use Illuminate\Http\Request;
 
 class VerificationController extends Controller
 {
@@ -25,7 +28,7 @@ class VerificationController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/';
+    protected $redirectTo = '/admin';
 
     /**
      * Create a new controller instance.
@@ -37,5 +40,14 @@ class VerificationController extends Controller
         $this->middleware('auth');
         $this->middleware('signed')->only('verify');
         $this->middleware('throttle:6,1')->only('verify', 'resend');
+    }
+    public function show(Request $request)
+    {
+        $doms = Domaine::get();
+        $sous_doms = Sousdomaine::get();
+        $titre = "vérification";
+        return $request->user()->hasVerifiedEmail()
+            ? redirect($this->redirectPath())
+            : view('auth.verify', compact('doms', 'sous_doms', 'titre'));
     }
 }

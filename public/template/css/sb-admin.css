@@ -10397,6 +10397,8 @@ body {
   width: 100%;
   padding-top: 1rem;
   padding-bottom: 80px;
+  margin-top: 0px;
+  margin-bottom: 100px;
 }
 
 .scroll-to-top {
@@ -10488,6 +10490,7 @@ body {
 .sidebar {
   width: 90px !important;
   background-color: #212529;
+  font-size: 0.85em;
   min-height: calc(100vh - 56px);
 }
 
@@ -10546,6 +10549,7 @@ body {
     text-align: left;
     padding: 1rem;
     width: 225px;
+    font-size: 1rem;
   }
   .sidebar .nav-item .nav-link span {
     font-size: 1rem;

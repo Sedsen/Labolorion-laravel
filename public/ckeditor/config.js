@@ -30,5 +30,9 @@ CKEDITOR.editorConfig = function( config ) {
 	config.removeButtons = 'Cut,Copy,Paste,Undo,Redo,Anchor,Underline,Strike,Subscript,Superscript';
 
 	// Dialog windows are also simplified.
-	config.removeDialogTabs = 'link:advanced';
+    config.removeDialogTabs = 'link:advanced';
+    config.language = 'en';
+	config.uiColor = '#F7B42C';
+	config.height = 300;
+	config.toolbarCanCollapse = true;
 };

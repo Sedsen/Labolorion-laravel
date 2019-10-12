@@ -44,4 +44,10 @@ return [
         ],
     ],
 
+    'twitter' => [
+        'client_id' => 'your twitter client_id',
+        'client_secret' => 'your twitter secret',
+        'redirect' => "url('login/twitter/callback')",
+    ],
+
 ];
