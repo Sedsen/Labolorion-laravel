@@ -2,31 +2,49 @@
     margin-bottom: 20px;
 }
 
-/*#content-wrapper {
-    margin-top: 0;
+.card-img-top:hover {
+    transition: 0.4s;
+    transform: scale(1.2);
+}
+.card-body .btn-lg:hover {
+    /*transform: scale(1.2); translateX(20px);*/
+    transition: 0.4s;
+    padding-right: 50px;
+}
+.card-deck .card {
+    box-shadow: 0 0 35px rgba(0, 0, 0, 0.2);
 }
 
-.main-menu {
-    list-style: none;
-    float: right;
-    padding-top: 25px;
+.title {
+    font-family: "Whitney A", "Whitney B", sans-serif;
+    font-size: 48px;
+    font-weight: 200;
+}
+.description {
+    margin: 15px 30px;
 }
 
-.main-menu li {
-    display: inline;
+.recherche {
+    display: none;
 }
 
-.main-menu li a {
-    display: inline-block;
-    font-size: 16px;
-    color: #fff;
-    margin-left: 50px;
-    -webkit-transition: all 0.4s;
-    -o-transition: all 0.4s;
-    transition: all 0.4s;
+.show-search {
+    display: inline-block !important;
 }
-
-.main-menu li a:hover {
-    color: #eb2b63;
+@media screen and (max-width: 740px) {
+    #content-wrapper {
+        margin: 20px 15px;
+    }
+    .sidebar {
+        display: none !important;
+    }
+    .card-deck {
+        padding-left: 30px;
+    }
+    .container .navbar-nav .nav-item .nav-link .hide {
+        display: none;
+    }
+    .recherche {
+        display: inline-block;
+    }
 }
-*/

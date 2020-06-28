@@ -8,6 +8,7 @@ use Laravel\Socialite\Facades\Socialite;
 use App\User;
 use App\Domaine;
 use App\Sousdomaine;
+use Illuminate\Http\Request;
 
 class LoginController extends Controller
 {
@@ -47,6 +48,11 @@ class LoginController extends Controller
         $sous_doms = SousDomaine::get();
         $titre = "Se connecter";
         return view('auth.login', compact('doms', 'sous_doms', 'titre'));
+    }
+
+    protected function credentials(Request $request)
+    {
+        return array_merge($request->only($this->username(), 'password'), ['confirmation_token' => null]);
     }
 
     public function socialLogin($social)

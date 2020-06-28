@@ -11,15 +11,18 @@
 @endif
 
 
-{{-- Intro Lines --}}
+{{-- Intro Lines 
 @foreach ($introLines as $line)
 {{ $line }}
 
-@endforeach
+@endforeach --}}
+  @php
+     echo "Vous recevez cet e-mail parce que nous avons reçu de votre part une demande de réinitialisation de votre mot de passe.";
+ @endphp 
 
 {{-- Action Button --}}
 @isset($actionText)
-<?php //var_dump($actionUrl); ?>
+
 <?php
     switch ($level) {
         case 'success':
@@ -31,29 +34,35 @@
     }
 ?>
 @component('mail::button', ['url' => $actionUrl, 'color' => $color])
-{{ $actionText }}
+ {{--$actionText --}}
+  @php
+    echo 'Réinitialiser le mot de passe';
+@endphp 
 @endcomponent
 @endisset
-
-{{-- Outro Lines --}}
+@php
+    echo "Ce lien de réinitialisation de mot de passe expire dans 60 minutes. \n "
+@endphp
+{{-- Outro Lines 
 @foreach ($outroLines as $line)
 {{ $line }}
 
-@endforeach
+@endforeach --}}
+
 
 {{-- Salutation --}}
 @if (! empty($salutation))
 {{ $salutation }}
 @else
-@lang('Regards'),<br>{{ config('app.name') }}
+@lang('Recevez nos salutations chaleureuses!'),<br>{{ config('app.name') }}
 @endif
 
 {{-- Subcopy --}}
 @isset($actionText)
 @slot('subcopy')
 @lang(
-    "If you’re having trouble clicking the \":actionText\" button, copy and paste the URL below\n".
-    'into your web browser: [:actionURL](:actionURL)',
+     "Si vous rencontrez des problèmes s'il vous plait cliquer sur le bouton \"Réinitialiser le mot de passe\", ou copiez et collez le lien ci-dessous \n". 
+    'dans votre navigateur [:actionURL](:actionURL)',
     [
         'actionText' => $actionText,
         'actionURL' => $actionUrl,

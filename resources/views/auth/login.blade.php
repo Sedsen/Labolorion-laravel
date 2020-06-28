@@ -2,13 +2,22 @@
 
 @section('content')
     <div class="container" >
-        <div class="row justify-content-center">
-            <div class="col-md-6 col-sm-8" style="margin-bottom:30px;">
+           <div class="row justify-content-center">
+            <div class="col-md-6 col-sm-8" style="margin-bottom:30px;margin-top:50px;">
                 <div class="card">
-                    <div class="card-header h5 bg-secondary text-center">{{ __('Se connecter') }}</div>
-
+                    <div class="card-header h5 bg-secondary text-center text-light" style="background-color:rgba(255, 255, 255, 0.5);">{{  __('Se connecter') }}</div>
+                     @if (session('success'))
+                        <div class="alert alert-success">
+                            {{ session('success') }}
+                        </div>
+                    @endif
+                    @if (session('error'))
+                        <div class="alert alert-danger">
+                            {{ session('error') }}
+                        </div>
+                    @endif
                     <div class="card-body">
-                        <form method="POST" action="{{ route('login') }}">
+                        <form method="POST" action="{{ route('login') }}" class="login-form">
                             @csrf
 
                             <div class="form-group row">
@@ -77,7 +86,7 @@
                                 </div>
                             </div>-->
                         </form>
-                    </div>
+                      </div>
                 </div>
             </div>
         </div>

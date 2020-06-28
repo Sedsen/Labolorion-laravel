@@ -3,7 +3,7 @@
 @section('content')
     <div>
         <div class="row container-fluid">
-
+            
             <div class="col-md-5 offset-md-2 col-xs-5 offset-xs-2 chat-bottom-bar">
                {!! Form::open(['action' => 'ChatController@add_user_message']) !!}
                   <div class="form-group" >

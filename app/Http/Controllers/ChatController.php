@@ -16,9 +16,8 @@ class ChatController extends Controller
     /* Dans cette fonction $users est défini comme admin
         et $user_id est défini comme utilisateur connecté
     */
-    public function index()
+    /* public function index()
     {
-
         $users = User::where('is_admin', 1)->get(); //$admins
         $user_id = Auth::id(); //$user connecté
         $msg_not_reads = new Discussion();
@@ -52,6 +51,54 @@ class ChatController extends Controller
                 }
             }
         }
+    }
+    */
+
+    public function index($admin_id)
+    {
+        //$admins = User::where('is_admin', 1)->get(); //$admins
+        $user_id = Auth::id(); //$user connecté
+        $msg_not_reads = new Discussion();
+        $doms = Domaine::get();
+        $sous_doms = SousDomaine::get();
+
+        //dd($chats);
+        //foreach ($chats as $chat) {
+
+        if ($admin_id == $user_id) {
+            $liste = User::where('is_admin', 0)->get(); // La liste des utilisateurs simples
+            // dd($liste);
+            //$not_read = new Discussion();
+            $not_read = Discussion::where('is_read', 0)->get();
+            $chatController = new ChatController();
+            // $chat = Chat::get();
+            $titre = "Liste des messages des utilisateurs";
+
+            //dd($liste);
+            return view('chat/liste', compact('liste', 'not_read', 'user_id', 'titre', 'chat', 'chatController', 'msg_not_reads', 'doms', 'sous_doms'));
+        }/* else {
+            $this->add_chat();
+            // $chat_id = $chat->id;
+            $chats = $this->select_chat($admin_id, $user_id);
+            dd($chats);
+            $messages = Discussion::where('chat_id', $chat_id)->orderBy('id', 'desc')->get();
+            $this->update_messages_non_lus($chat_id, $admin_id);
+            $this->update_tous_les_messages_non_lus($admin_id);
+            $titre = " Les messages ";
+            return view('chat/index', compact('users', 'messages', 'chats', 'chat_id', 'titre', 'msg_not_reads', 'doms', 'sous_doms'));
+        }*/
+        // }
+    }
+
+    public function view_user_message()
+    {
+        $user_id = Auth::id(); //$user connecté
+        $msg_not_reads = new Discussion();
+        $doms = Domaine::get();
+        $sous_doms = SousDomaine::get();
+        $admins = User::where('is_admin', 1)->get();
+        $titre = " Les messages ";
+        return view('chat/index', compact('admins', 'messages', 'chats', 'chat_id', 'titre', 'msg_not_reads', 'doms', 'sous_doms'));
     }
 
     public function add_user_message(ChatRequest $request)

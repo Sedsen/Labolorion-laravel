@@ -66,7 +66,10 @@
 
         {{ Form::close() }}
         <script >
-            CKEDITOR.replace('description',{allowedContent: true});
+            CKEDITOR.replace('description',{
+                        language: 'fr',
+                        uiColor: "#F7B42C"
+                    });
         </script>
 </div>
 

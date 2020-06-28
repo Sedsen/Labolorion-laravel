@@ -10,6 +10,7 @@ use App\Http\Requests\ProduitsRequest;
 use App\Http\Requests\ModifProduitRequest;
 use App\Domaine;
 use App\User;
+use Illuminate\Support\Str;
 
 class ProduitController extends Controller
 {
@@ -35,7 +36,7 @@ class ProduitController extends Controller
             'sous_domaine_id' => $sous_domaine->id
         ]);
         $produit->save();
-        $imageName = $produit->id . '.' . $request->file('image')->getClientOriginalExtension();
+        $imageName = $produit->id . Str::random(5) . '.' . $request->file('image')->getClientOriginalExtension();
         $request->file('image')->move(base_path() . '/public/uploads/', $imageName);
         $produit->image = $imageName;
         $produit->save();

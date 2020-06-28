@@ -55,7 +55,7 @@
         <div class="col">
             <div class="form-group">
                 <label for="Description">Description</label>
-                <textarea class="form-control" name="description" id="" rows="3"></textarea>
+                <textarea class="form-control" name="description" id="description" rows="3"></textarea>
             </div>
               @if ($errors->has('description'))
                     <div class="alert alert-danger">
@@ -64,7 +64,10 @@
                 @endif
         </div>
             <script >
-                CKEDITOR.replace('description');//,{allowedContent: true}
+                CKEDITOR.replace('description',{
+                        language: 'fr',
+                        uiColor: "#F7B42C"
+                    });//,{allowedContent: true}
             </script>
             {{ Form::close() }}
 

@@ -6,7 +6,9 @@
             @foreach ($produits as $produit)
             <div class="col col-lg-3 col-sm-6 col-10 col-md-6">
                 <div class="card bg-secondary" style="width: 15rem; height:25rem;">
-                    <img class="card-img-top" src="{{ url("/uploads/$produit->image")}}" alt="" style="height:15rem;">
+                    <a href="{{ url("/uploads/$produit->image")}}">
+                        <img class="card-img-top" src="{{ url("/uploads/$produit->image")}}" alt="" style="height:15rem;">
+                    </a>
                     <div class="card-body">
                         <span class="card-title text-light">{{ $produit->nom }}</span>
                         <p class="card-text" style="position:absolute;bottom:2%;">

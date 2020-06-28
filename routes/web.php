@@ -15,6 +15,13 @@ Route::get('/', 'LorionController@index');
 Route::get('/show/{id}', 'LorionController@show_produit');
 Route::get('/show_liste/{sous_domaine_id}', 'LorionController@show_liste_sous_domaine');
 Route::get('/search', 'LorionController@search');
+Route::get('/services', 'LorionController@afficher_services');
+Route::get('/presentation', 'LorionController@afficher_presentation');
+Route::get('/contact', 'LorionController@afficher_contact');
+Route::get('/cart', 'LorionController@afficher_cart');
+Route::post('/cart/{id}', 'LorionController@add_cart');
+Route::get('/remove_cart/{id}', 'LorionController@delete_cart');
+Route::get('/remove_all', 'LorionController@delete_all_cart');
 
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::get('/', 'Admin\AdminController@index')->middleware('admin');
@@ -31,10 +38,13 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::get('show_users', 'Admin\AdminController@show_users');
     Route::post('show_users', 'Admin\AdminController@add_users');
     Route::get('delete_user/{id}', 'Admin\AdminController@delete_user');
+
+    Route::get('entreprise', 'Admin\AdminController@voir_entreprise');
+    Route::post('entreprise', 'Admin\AdminController@update_entreprise');
 });
 
 Route::group(['prefix' => 'admin'], function () {
-    Route::get('/produit', 'Admin\ProduitController@index')->middleware('verified');
+    Route::get('/produit', 'Admin\ProduitController@index');
     Route::post('/produit', 'Admin\ProduitController@add_produit');
     Route::get('/delete_produit/{id}', 'Admin\ProduitController@delete');
     Route::post('/update_produit/{id}', 'Admin\ProduitController@update');
@@ -46,13 +56,17 @@ Route::group(['prefix' => 'chat', 'middleware' => 'auth'], function () {
 */
     Route::get('view/{user_id}', 'ChatController@view_message');
     Route::post('view/{user_id}', 'ChatController@add_admin_message');
-    Route::get('/', 'ChatController@index');
+    Route::get('/{admin_id}', 'ChatController@index');
+    Route::get('/view_', 'ChatController@view_user_message');
     Route::post('/', 'ChatController@add_user_message');
 });
+
+
+Route::get('/confirm/{id}/{token}', 'Auth\RegisterController@confirm');
 
 Route::get('/login/{social}', 'Auth\LoginController@socialLogin')->where('social', 'Twitter|Facebook');
 Route::get('/login/{social/callback}', 'Auth\LoginController@handleProviderCallback')->where('social', 'Twitter|Facebook');
 
-Auth::routes(['verify' => true]);
+Auth::routes(); //['verify' => false]
 
 Route::get('/home', 'HomeController@index')->name('home');

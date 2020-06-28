@@ -14,6 +14,8 @@ use App\Http\Requests\SousDomaineRequest;
 use App\Http\Requests\UserRequest;
 use Illuminate\Support\Facades\Auth;
 use App\Discussion;
+use App\Entreprise;
+use App\Http\Requests\EntrepriseRequest;
 
 class AdminController extends Controller
 {
@@ -139,5 +141,27 @@ class AdminController extends Controller
         $user = User::findOrFail($id);
         $user->delete();
         return redirect('admin/show_users');
+    }
+
+    public function voir_entreprise($id = 1)
+    {
+        $doms = Domaine::get();
+        $sous_doms = SousDomaine::get();
+        $entreprises = Entreprise::findOrFail($id);
+
+        $titre = "Les informations sur l'entreprise";
+        return view('admin/entreprise', compact('doms', 'sous_doms', 'titre', 'entreprises'));
+    }
+
+    public function update_entreprise($id = 1, EntrepriseRequest $request)
+    {
+        $entreprises = Entreprise::findOrFail($id);
+        // dd($request);
+        $entreprises->nom = $request->get('nom');
+        $entreprises->description = $request->get('description');
+        $entreprises->presentation = $request->get('presentation');
+        $entreprises->services = $request->get('services');
+        $entreprises->save();
+        return redirect('admin/entreprise');
     }
 }
